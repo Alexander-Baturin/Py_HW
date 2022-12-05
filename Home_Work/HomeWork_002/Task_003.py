@@ -16,8 +16,8 @@ print()
 # for i in com_set:
 #     print(i)
 
-# k = -1
-# for i in range(len(rnd_list)//2):
-#     rnd_list[k], rnd_list[i] = rnd_list[i], rnd_list[k]
-#     print(rnd_list)
-#     k -= 1
+k = -1
+for i in range(len(rnd_list)//2):
+    rnd_list[k], rnd_list[i] = rnd_list[i], rnd_list[k]
+    print(rnd_list)
+    k -= 1
