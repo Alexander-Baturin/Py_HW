@@ -16,3 +16,16 @@ for i in range(len(text)):
     if text[i:i+len(sub_text)] == sub_text:
         count += 1
 print(f'Подстрока {sub_text} встречается в заданном тексте {count} раз')
+
+# Как перевернуть строку:
+# string = 'asdfg'
+# print(string[::-1])
+
+# insert строки:
+# my_list =[0]
+#
+# for iu in range(1, 5):
+#     my_list.append(5)
+#     my_list.insert(0, -i)
+#     print(my_list)
+# print(my_list)
