@@ -9,19 +9,20 @@ size = int(input('Введите размер списка: '))
 rnd_list = []
 
 for i in range(size):
-    rnd_list.append(rnd(0,size))
+    rnd_list.append(rnd(0, size))
 
-print(rnd_list)
-sum = 0
+# print(rnd_list)
+summa = 0
 count = 0
 
 for i in range(len(rnd_list)):
-    if count % 2:
-        print(rnd_list[i])
+    if count % 2 !=0:
+        # print(rnd_list[i])
         count += 1
+        summa += rnd_list[i]
 
     else:
-        sum += rnd_list[i]
         count+=1
 
-print(f'{rnd_list} -> сумма нечетных элементов - {sum}')
+
+print(f'{rnd_list} -> сумма нечетных элементов - {summa}')
