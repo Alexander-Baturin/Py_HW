@@ -32,6 +32,6 @@ for i in range(size, -1, -1):
         equation = equation[:-2]
 print(equation + " = 0")
 
-data = open('file_004001.txt', 'a')
+data = open('file_004001.txt', 'w')
 data.writelines(equation + " = 0")
 data.close()
