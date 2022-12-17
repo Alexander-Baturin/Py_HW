@@ -28,8 +28,9 @@ for i in range(size, -1, -1):
                 equation += f'{my_dict[i]} '
             else:
                 equation += f'{my_dict[i]}*x**{i} + '
-    if equation[:-1] == '':
-        equation = equation[:-2]
+    else:
+        if i == 0:
+            equation = equation[:-3]
 print(equation + " = 0")
 
 data = open('file_004001.txt', 'w')
