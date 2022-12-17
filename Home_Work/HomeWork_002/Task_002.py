@@ -7,8 +7,8 @@ for i in range(1, N+1):
     k = round((1+(1/i))**i,2)
     my_list.append(f'{k}')
 
-print(my_list)
-print()
+# print(my_list)
+# print()
 
 #print(sum(my_list,1))
 def my_list_to_num(str):
