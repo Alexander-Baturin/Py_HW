@@ -30,3 +30,7 @@ for i in range(size, -1, -1):
                 equation += f'{my_dict[i]}*x**{i} + '
 
 print(equation + " = 0")
+
+data = open('file_004001.txt', 'a')
+data.writelines(equation + " = 0")
+data.close()
