@@ -7,7 +7,7 @@ max_num = 0
 for i in range(len(nums)):
     nums[i] = int(nums[i])
 
-for i in range(len(nums)):
+for i in range(len(nums)):# можно заменить на - nums = list(map(int, nums))
     if max_num < nums[i]:
         max_num = nums[i]
 
