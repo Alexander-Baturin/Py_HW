@@ -1,7 +1,7 @@
 # Задача 5. Задайте число. Составьте список чисел Фибоначчи, в том числе для отрицательных индексов (Негафибоначчи).
 # Пример: для k = 8 список будет выглядеть так: [-21 ,13, -8, 5, −3, 2, −1, 1, 0, 1, 1, 2, 3, 5, 8, 13, 21]
 
-n = int(input('Введите число N: '))
+'''n = int(input('Введите число N: '))
 
 fib_1 = 1
 fib_2 = 1
@@ -56,4 +56,17 @@ my_list_fib.reverse()
 
 my_end_list = my_list_nfib + my_list_fib
 
-print(f'Для N = {k} список будет выглядеть так: {my_end_list}')
+print(f'Для N = {k} список будет выглядеть так: {my_end_list}')'''
+
+size = int(input('Введите размер ряда: '))
+fibo = [1, 0, 1]
+
+for i in range(2, size+2):
+    fibo.append(fibo[i-1] + fibo[i])
+
+# print(fibo)
+
+for i in range(size):
+    fibo.insert(0, fibo[1] - fibo[0])
+
+print(fibo)
