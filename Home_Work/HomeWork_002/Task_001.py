@@ -12,7 +12,7 @@ def Summa(num):
     number = 0
 
     for i in str(num):
-        if i != '.':
+        if i.isdigit():#if i != '.': - если применять это условие, то задача не работает с отрицательными числами
             number += int(i)
     return(number)
 
