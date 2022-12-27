@@ -5,13 +5,13 @@
 
 num = float(input('Введите число: '))
 
-def Summa(num):
-    if num < 0:
-        num = num*(-1)
+def Summa(x):
+    if x < 0:
+        x = x*(-1)
 
     number = 0
 
-    for i in str(num):
+    for i in str(x):
         if i.isdigit():#if i != '.': - если применять это условие, то задача не работает с отрицательными числами
             number += int(i)
     return(number)
