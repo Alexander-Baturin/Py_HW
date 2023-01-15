@@ -29,3 +29,6 @@ def log_of():
 
 def print_division_by_zero():
     print('На ноль делить нельзя!')
+
+def print_result(value):
+    print(f'Результат: {int(value)}')

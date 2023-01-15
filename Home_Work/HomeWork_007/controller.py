@@ -36,12 +36,20 @@ def solution():
     view.print_to_console(result_string)
     model.set_first(model.get_result())
 
-def string_calc(expression: str):
-    expression = expression.replace(' ', '').replace('+', ' + ').replace('-', ' - ').replace('*', ' * ').\
-        replace('/', ' / ').split()
+def str_expression(expression: list):
+    result = 0
+    if '(' in expression:
+        result = check_parentheses(expression)
+        result = string_calc(result)
+    else:
+        result = string_calc(expression)
+    model.set_result(result)
+def string_calc(expression: list):
+    # expression = expression.replace(' ', '').replace('+', ' + ').replace('-', ' - ').replace('*', ' * ').\
+    #     replace('/', ' / ').replace('(', ' ( ').replace(')', ' ) ').split()
     new_expression = []
     for item in expression:
-        if item.isdigit():
+        if isinstance(item, int):
             new_expression.append(int(item))
         else:
             new_expression.append(item)
@@ -49,44 +57,89 @@ def string_calc(expression: str):
         i = 0
         while (('*' in new_expression) or ('/' in new_expression)) and i < len(new_expression):
             if new_expression[i] == '*':
-                result = new_expression[i-1] * new_expression[i+1]
+                result = int(new_expression[i-1]) * int(new_expression[i+1])
                 new_expression[i-1] = result
                 new_expression.pop(i)
                 new_expression.pop(i)
             elif new_expression[i] == '/':
-                result = new_expression[i-1] / new_expression[i+1]
+                result = int(new_expression[i-1]) / int(new_expression[i+1])
                 new_expression[i-1] = result
                 new_expression.pop(i)
                 new_expression.pop(i)
             i += 1
         while (('+' in new_expression) or ('-' in new_expression)) and i < len(new_expression):
             if new_expression[i] == '+':
-                result = new_expression[i-1] + new_expression[i+1]
+                result = int(new_expression[i-1]) + int(new_expression[i+1])
                 new_expression[i-1] = result
                 new_expression.pop(i)
                 new_expression.pop(i)
             elif new_expression[i] == '-':
-                result = new_expression[i-1] - new_expression[i+1]
+                result = int(new_expression[i-1]) - int(new_expression[i+1])
                 new_expression[i-1] = result
                 new_expression.pop(i)
                 new_expression.pop(i)
             i += 1
-    print(new_expression[0])
+    return new_expression[0]
+    # print(new_expression[0])
 
-
-def first_input():
-    number = view.first_input()
-    if number.isdigit():
-        model.set_first(number)
-        while True:
-            input_operation()
-            if model.get_operation() == '=':
-                view.log_of()
+def check_parentheses(expression):
+    while '(' in expression:
+        open_index, close_index = 0, 0
+        for i in range(len(expression)):
+            if expression[i] == '(':
+                open_index = i
+            if expression[i] == ')':
+                close_index = i
                 break
-            input_second()
-            solution()
+        else:
+            return expression
+        first_expr = expression[0:open_index]
+        part_expr = expression[open_index+1:close_index]
+        last_expr = expression[close_index+1:]
+        expression = first_expr + [string_calc(part_expr)] + last_expr
+    return expression
+
+def valid_expression(expression):
+    stack = []
+    for char in expression:
+        if char == '(':
+            stack.insert(0, char)
+        if char == ')':
+            if len(stack) > 0:
+                stack.pop(0)
+            else:
+                return False
+    if len(stack) > 0:
+        return False
     else:
-        string_calc(number)
+        return True
+def first_input():
+    while True:
+        number = view.first_input()
+        number = number.strip().replace(' ', '').replace('+', ' + ').replace('-', ' - ').replace('*', ' * '). \
+            replace('/', ' / ').replace('(', ' ( ').replace(')', ' ) ').split()
+        if number[0] == '-':
+            number[0] = int(number[0] + number[1])
+            number.pop(1)
+        if len(number) < 2:
+        #     model.set_first(number)
+            while True:
+                input_operation()
+                if model.get_operation() == '=':
+                    view.log_of()
+                    break
+                input_second()
+                solution()
+        else:
+            if valid_expression(number):
+                str_expression(number)
+            else:
+                print('Введено некорректное выражение')
+        result = model.get_result()
+        view.print_result(result)
+        retry = input('Посчитать еще одно выражение? (y/n)')
+        if retry == 'n':
+            break
 
 
 # def start():

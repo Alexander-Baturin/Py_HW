@@ -27,6 +27,10 @@ def set_second(value):
     global second_number
     second_number = value
 
+def set_result(value):
+    global result
+    result = value
+
 def set_operation(oper):
     global operation
     operation = oper
